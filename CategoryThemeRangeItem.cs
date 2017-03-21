@@ -16,13 +16,6 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-
-using SharpMap.Data;
-using SharpMap.Styles;
-using SharpMap.Utilities;
 
 namespace SharpMap.Rendering.Thematics
 {
@@ -44,13 +37,13 @@ namespace SharpMap.Rendering.Thematics
 		{
 			get
 			{
-				return this._lowerBound;
+				return _lowerBound;
 			}
 			set
 			{
 				if (_lowerBound.CompareTo(value) == 0)
 					return;
-				this._lowerBound = value;
+				_lowerBound = value;
 				//this.OnPropertyChanged("LowerBound");
 			}
 		}
@@ -63,13 +56,13 @@ namespace SharpMap.Rendering.Thematics
 		{
 			get
 			{
-				return this._upperBound;
+				return _upperBound;
 			}
 			set
 			{
 				if (_upperBound.CompareTo(value) == 0)
 					return;
-				this._upperBound = value;
+				_upperBound = value;
 				//this.OnPropertyChanged("UpperBound");
 			}
 		}
@@ -91,8 +84,8 @@ namespace SharpMap.Rendering.Thematics
 			var o = other as CategoryThemeRangeItem<T>;
 			if (o == null) return -1;
 			
-			if (this.Matches(o.LowerBound)) return 0;
-			if (this.Matches(o.UpperBound)) return 0;
+			if (Matches(o.LowerBound)) return 0;
+			if (Matches(o.UpperBound)) return 0;
 			
 			return _lowerBound.CompareTo(o.LowerBound);
 		}
@@ -108,8 +101,8 @@ namespace SharpMap.Rendering.Thematics
 		/// <returns>true, if <paramref name="value"/> matches.</returns>
 		public override bool Matches(T value)
 		{
-			if (_lowerBound.CompareTo(value) < 0) return false;
-			if (_upperBound.CompareTo(value) >= 0) return false;
+			if (value.CompareTo(_lowerBound) < 0) return false;
+			if (value.CompareTo(_upperBound) >= 0) return false;
 			return true;
 		}
 		

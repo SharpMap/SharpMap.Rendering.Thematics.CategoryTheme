@@ -16,13 +16,8 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-
-using SharpMap.Data;
 using SharpMap.Styles;
-using SharpMap.Utilities;
+
 namespace SharpMap.Rendering.Thematics
 {
 
@@ -67,13 +62,13 @@ namespace SharpMap.Rendering.Thematics
 		{
 			get
 			{
-				return this._title ?? this.ToString();
+				return _title ?? ToString();
 			}
 			set
 			{
 				if (value.Equals(_title))
 					return;
-				this._title = value;
+				_title = value;
 				//this.OnPropertyChanged("Title");
 			}
 		}
@@ -85,7 +80,7 @@ namespace SharpMap.Rendering.Thematics
 		{
 			get
 			{
-				return this._style;
+				return _style;
 			}
 			set
 			{
@@ -95,7 +90,7 @@ namespace SharpMap.Rendering.Thematics
 				if (value.Equals(_style))
 					return;
 				
-				this._style = value;
+				_style = value;
 				//this.OnPropertyChanged("Style");
 			}
 		}

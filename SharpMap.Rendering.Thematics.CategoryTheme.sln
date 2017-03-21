@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpMap.Rendering.Thematics.CategoryTheme", "SharpMap.Rendering.Thematics.CategoryTheme.csproj", "{565E0DA8-F456-486E-96B6-19C1C273295D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpMap.Rendering.Thematics.CategoryThemeTest", "SharpMap.Rendering.Thematics.CategoryThemeTest.csproj", "{3B245586-093B-43D1-874C-010DFED0325C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{565E0DA8-F456-486E-96B6-19C1C273295D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{565E0DA8-F456-486E-96B6-19C1C273295D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{565E0DA8-F456-486E-96B6-19C1C273295D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B245586-093B-43D1-874C-010DFED0325C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B245586-093B-43D1-874C-010DFED0325C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B245586-093B-43D1-874C-010DFED0325C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B245586-093B-43D1-874C-010DFED0325C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

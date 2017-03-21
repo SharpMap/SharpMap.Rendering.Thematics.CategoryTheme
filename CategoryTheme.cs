@@ -17,17 +17,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+
+using SharpMap.Data;
+using SharpMap.Styles;
 
 namespace SharpMap.Rendering.Thematics
 {
-	using System;
-	using System.Collections.Generic;
-	using System.ComponentModel;
-	using System.Diagnostics;
-
-	using SharpMap.Data;
-	using SharpMap.Styles;
-	using SharpMap.Utilities;
 	///<summary>
 	///</summary>
 	[Serializable]
@@ -41,11 +37,28 @@ namespace SharpMap.Rendering.Thematics
 		private bool _sorted;
 		
 		public bool UseDefaultStyleForDbNull;
-		
-		/// <summary>
-		/// The column name to get the value from
-		/// </summary>
-		public string ColumnName
+
+        /// <summary>
+        /// Creates an instance of this class setting the default style to a disabled
+        /// </summary>
+	    public CategoryTheme()
+            :this(CreateDisabledStyle())
+	    {
+	    }
+
+        /// <summary>
+        /// Creates an instance of this class setting the default style
+        /// </summary>
+        /// <param name="style">The default style</param>
+        public CategoryTheme(IStyle style)
+        {
+            _default = style;
+        }
+
+        /// <summary>
+        /// The column name to get the value from
+        /// </summary>
+        public string ColumnName
 		{
 			get
 			{
@@ -63,24 +76,28 @@ namespace SharpMap.Rendering.Thematics
 			}
 		}
 		
-		private ICategoryThemeItem<T> _default;
+		private IStyle _default;
 		
 		/// <summary>
 		/// Gets or sets the default <see cref="IStyle"/>, used when the attribute value does not match the criteria
 		/// </summary>
-		public ICategoryThemeItem<T> Default
+		public IStyle Default
 		{
-			get
-			{
-				return this._default;
-			}
+			get { return _default ?? (_default = CreateDisabledStyle()); }
 			set
 			{
-				this._default = value;
+				_default = value;
 				//this.OnPropertyChanged("Default");
 			}
 		}
-		
+
+	    private static IStyle CreateDisabledStyle()
+	    {
+	        var res = new VectorStyle();
+	        res.Enabled = false;
+	        return res;
+	    }
+
 		///<summary>
 		///</summary>
 		///<param name="cti"></param>
@@ -111,7 +128,8 @@ namespace SharpMap.Rendering.Thematics
 				throw new ArgumentNullException("attribute", "The attribute row must not be null!");
 			
 			// If the row has no value return the default style
-			if (attribute.IsNull(_columnName) && UseDefaultStyleForDbNull) return _default.Style;
+			if (attribute.IsNull(_columnName)) 
+                return UseDefaultStyleForDbNull ? _default : null;
 			
 			// Sort the list
 			if (!_sorted)
@@ -129,7 +147,7 @@ namespace SharpMap.Rendering.Thematics
 					var cti = _items.Find(c => c.Matches(tval));
 					return cti.Style;
 				}
-				catch(ArgumentNullException)
+				catch(NullReferenceException)
 				{
 				}
 				//foreach (ICategoryThemeItem<T> categoryThemeItem in _items)
@@ -138,7 +156,7 @@ namespace SharpMap.Rendering.Thematics
 				//}
 			}
 			
-			return Default.Style;
+			return _default;
 		}
 		
 		/// <summary>

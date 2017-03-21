@@ -17,12 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-
-using SharpMap.Data;
-using SharpMap.Styles;
-using SharpMap.Utilities;
 
 namespace SharpMap.Rendering.Thematics
 {
@@ -44,11 +38,11 @@ namespace SharpMap.Rendering.Thematics
 		{
 			get
 			{
-				return this._values;
+				return _values;
 			}
 			set
 			{
-				this._values = value;
+				_values = value;
 				//this.OnPropertyChanged("Values");
 				_values.Sort();
 			}
